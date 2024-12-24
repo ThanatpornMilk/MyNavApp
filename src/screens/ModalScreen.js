@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Modal, TouchableOpacity } from "react-native";
+import { Icon } from "react-native-vector-icons/FontAwesome5";
 
 const ModalScreen = ({ navigation }) => {
     const [isVisible, setIsVisible] = useState(false);
@@ -25,7 +26,8 @@ const ModalScreen = ({ navigation }) => {
                                 navigation.navigate('List');
                             }}
                         >
-                            <Text style={Styles.okButtonText}>เข้าสู่ระบบ</Text>
+                            {/* <Text style={Styles.okButtonText}>เข้าสู่ระบบ</Text> */}
+                            <Icon name='door-open' size={36} color={white} />
                         </TouchableOpacity>
                     </View>
                 </View>
