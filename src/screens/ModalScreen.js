@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Modal, TouchableOpacity } from "react-native";
-import { Icon } from "react-native-vector-icons/FontAwesome5";
+import Icon from "react-native-vector-icons/FontAwesome5"; 
 
 const ModalScreen = ({ navigation }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     return (
         <View style={Styles.Container}>
-            <Text> This is Modal Screen</Text>
+            <Text>This is Modal Screen</Text>
             <TouchableOpacity
                 style={Styles.okButton}
                 onPress={() => setIsVisible(true)}
@@ -23,11 +23,10 @@ const ModalScreen = ({ navigation }) => {
                             style={Styles.okButton}
                             onPress={() => {
                                 setIsVisible(false);
-                                navigation.navigate('List');
+                                navigation.navigate('List'); // ใช้งานการนำทาง
                             }}
                         >
-                            {/* <Text style={Styles.okButtonText}>เข้าสู่ระบบ</Text> */}
-                            <Icon name='door-open' size={36} color={white} />
+                            <Icon name="door-open" size={30} color="white" />
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -47,7 +46,7 @@ const Styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgba(0, 0, 0, .5)'
+        backgroundColor: 'rgba(0, 0, 0, .5)',
     },
     modalContainer: {
         width: 300,
@@ -68,15 +67,16 @@ const Styles = StyleSheet.create({
         marginBottom: 20,
     },
     okButton: {
-        backgroundColor: '#B2DFEE',
+        backgroundColor: '#A4D3EE',
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderRadius: 10,
+        alignItems: 'center',
     },
     okButtonText: {
         fontSize: 18,
-        fontWeight: 'semibold',
-        color: "black",
+        fontWeight: '600',
+        color: "white",
     },
 });
 

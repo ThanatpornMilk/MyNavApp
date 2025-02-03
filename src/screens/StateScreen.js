@@ -41,13 +41,13 @@ const StateScreen = () => {
 
 const Styles = StyleSheet.create({ 
     Container: { 
-      flex: 1,
-      alignItems: 'center',
-      backgroundColor: '#FFFAFA',
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: '#FFFAFA',
     },
     Text: {
-      fontSize: 200,
-      color: '#363636',
+        fontSize: 200,
+        color: '#363636',
     },
     Button: {
         width: 250,
