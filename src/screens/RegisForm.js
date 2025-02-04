@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Alert } from "react-native";
 import CustomButton from "./Components/CustomButton";
 
@@ -6,105 +6,116 @@ const RegisForm = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState({ username: '', email: '', password: '' })
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [errors, setErrors] = useState({ username: '', email: '', password: '', confirmPassword: '' });
 
-    //พิมพ์แล้ว text ที่แจ้ง error จะหายทันที
+    // พิมพ์แล้ว text ที่แจ้ง error จะหายทันที
     const handleChange = (field, value) => {
         switch (field) {
             case 'username':
-                setUsername(value)
-                setErrors((preErrors) => ({ ...preErrors, username: '' }))
+                setUsername(value);
+                setErrors((prevErrors) => ({ ...prevErrors, username: '' }));
                 break;
             case 'email':
-                setEmail(value)
-                setErrors((preErrors) => ({ ...preErrors, email: '' }))
+                setEmail(value);
+                setErrors((prevErrors) => ({ ...prevErrors, email: '' }));
                 break;
             case 'password':
-                setPassword(value)
-                setErrors((preErrors) => ({ ...preErrors, password: '' }))
+                setPassword(value);
+                setErrors((prevErrors) => ({ ...prevErrors, password: '', confirmPassword: '' }));
+                break;
+            case 'confirmPassword':
+                setConfirmPassword(value);
+                setErrors((prevErrors) => ({ ...prevErrors, confirmPassword: '' }));
                 break;
             default:
                 break;
         }
-    }
+    };
+
     const validateField = (field, value) => {
-        let error = ''
-        if (!value) { 
-            error = 'This Field is required'
+        let error = '';
+        if (!value) {
+            error = 'This field is required';
         } else {
-            if (field === 'email' && !/\S+@\S+\.\S+/.test(value)) {//ขึ้นต้นด้วยสตริง1ตัวขึ้นไปตามด้วย@ตามด้วยสตริง1ตัวขึ้นไปตามด้วย.ตามด้วยสตริง เช็คแบบหลวมๆ
-                error = 'Invalid email address'
-            }else if (field === 'password' && value.length < 8) {
-                error = "Invalid password format"
+            if (field === 'email' && !/\S+@\S+\.\S+/.test(value)) { 
+                error = 'Invalid email address';
+            } else if (field === 'password' && value.length < 8) {
+                error = 'Password must be at least 8 characters';
+            } else if (field === 'confirmPassword' && value !== password) {
+                error = 'Passwords do not match';
             }
         }
-        
-        setErrors((preErrors) => ({ ...preErrors, [field]: error }))
-        return error
-    }
+
+        setErrors((prevErrors) => ({ ...prevErrors, [field]: error }));
+        return error;
+    };
 
     const CheckSubmit = () => {
-        const usernameError = validateField('username', username)
-        const emailError = validateField('email', email)
-        const passwordError = validateField('password', password)
+        const usernameError = validateField('username', username);
+        const emailError = validateField('email', email);
+        const passwordError = validateField('password', password);
+        const confirmPasswordError = validateField('confirmPassword', confirmPassword);
 
-        if (!usernameError && !emailError && !passwordError) {
-            Alert.alert("Registration Result: ", 'SUCCESS !!')
-            setUsername('')
-            setEmail('')
-            setPassword('')
-            setErrors({ username: '', email: '', password: '' })
+        if (!usernameError && !emailError && !passwordError && !confirmPasswordError) {
+            Alert.alert("Registration Result:", "SUCCESS !!");
+            setUsername('');
+            setEmail('');
+            setPassword('');
+            setConfirmPassword('');
+            setErrors({ username: '', email: '', password: '', confirmPassword: '' });
         }
-    }
+    };
 
     return (
         <View style={Styles.Container}>
-            <Text style={Styles.Title}>Registration from</Text>
+            <Text style={Styles.Title}>Registration Form</Text>
+            
             <TextInput
                 style={Styles.Input}
                 placeholder="Username"
                 value={username}
-                // onChangeText={(value) => setUsername(value)}
-                onChangeText={(value) => handleChange('username',value)}
-                onBlur={() => validateField('username',username)} //ไม่ต้องรอกดปุ่มregisterแค่กดไปช่องอื่นก็ขึ้นtextแดงเลย
+                onChangeText={(value) => handleChange('username', value)}
+                onBlur={() => validateField('username', username)}
             />
-            {errors.username ? (
-                <Text style={Styles.ErrorText}>{errors.username}</Text>
-            ) : null}
-            
+            {errors.username ? <Text style={Styles.ErrorText}>{errors.username}</Text> : null}
+
             <TextInput
                 style={Styles.Input}
                 placeholder="Email"
                 keyboardType="email-address"
                 value={email}
-                // onChangeText={(value) => setEmail(value)}
-                onChangeText={(value) => handleChange('email',value)}
-                onBlur={() => validateField('email',email)}
+                onChangeText={(value) => handleChange('email', value)}
+                onBlur={() => validateField('email', email)}
             />
-            {errors.email ? (
-                <Text style={Styles.ErrorText}>{errors.email}</Text>
-            ) : null}
+            {errors.email ? <Text style={Styles.ErrorText}>{errors.email}</Text> : null}
 
-           <TextInput
+            <TextInput
                 style={Styles.Input}
                 placeholder="Password"
                 secureTextEntry
                 value={password}
-                // onChangeText={(value) => setPassword(value)}
-                onChangeText={(value) => handleChange('password',value)}
-                onBlur={() => validateField('password',password)}
+                onChangeText={(value) => handleChange('password', value)}
+                onBlur={() => validateField('password', password)}
             />
-            {errors.password ? (
-                <Text style={Styles.ErrorText}>{errors.password}</Text>
-            ) : null}
+            {errors.password ? <Text style={Styles.ErrorText}>{errors.password}</Text> : null}
+
+            <TextInput
+                style={Styles.Input}
+                placeholder="Confirm Password"
+                secureTextEntry
+                value={confirmPassword}
+                onChangeText={(value) => handleChange('confirmPassword', value)}
+                onBlur={() => validateField('confirmPassword', confirmPassword)}
+            />
+            {errors.confirmPassword ? <Text style={Styles.ErrorText}>{errors.confirmPassword}</Text> : null}
 
             <CustomButton
-                title='Register'
-                backgroundColor='#3CB371'
+                title="Register"
+                backgroundColor="#3CB371"
                 onPress={CheckSubmit}
             />
         </View>
-
     );
 };
 
@@ -112,7 +123,7 @@ const Styles = StyleSheet.create({
     Container: { 
         flex: 1,
         padding: 20,
-        backgroundColor:'#F2F2F2',
+        backgroundColor: '#F2F2F2',
     },
     Title: {
         marginBottom: 15,
@@ -129,11 +140,11 @@ const Styles = StyleSheet.create({
         marginBottom: 10,
     },
     ErrorText: {
-        color:'red',
+        color: 'red',
         marginBottom: 8,
         marginLeft: 5,
         fontSize: 12,
-    }
+    },
 });
 
 export default RegisForm;
