@@ -8,33 +8,33 @@ const HomeScreen = ({ navigation }) => {
             <Text style={Styles.TextStyle}>List of Screen</Text>
 
             <View style={Styles.ButtonContainer}>
-                <Button 
+                <CustomButton
                     title="Go to List Screen" 
-                    color="#9370DB" 
+                    backgroundColor="#9370DB" 
                     onPress={() => navigation.navigate('List')} 
                 />
             </View>
 
             <View style={Styles.ButtonContainer}>
-                <Button 
+                <CustomButton
                     title="Go to State Demo" 
-                    color="#6495ED" 
+                    backgroundColor="#6495ED" 
                     onPress={() => navigation.navigate('State')} 
                 />
             </View>
 
             <View style={Styles.ButtonContainer}>
-                <Button 
+                <CustomButton 
                     title="Go to Swipe Demo" 
-                    color="#7CCD7C" 
+                    backgroundColor="#7CCD7C" 
                     onPress={() => navigation.navigate('Swipe')} 
                 />
             </View>
 
             <View style={Styles.ButtonContainer}>
-                <Button 
+                <CustomButton
                     title="Go to Modal Demo" 
-                    color="#EE9572" 
+                    backgroundColor="#EE9572" 
                     onPress={() => navigation.navigate('Modal')} 
                 />
             </View>
@@ -48,18 +48,26 @@ const HomeScreen = ({ navigation }) => {
             </View>
 
             <View style={Styles.ButtonContainer}>
-                <Button 
+                <CustomButton 
                     title="Go to Cat Screen" 
-                    color='#e85378'
+                    backgroundColor='#e85378'
                     onPress={() => navigation.navigate('CatScreen')} 
                 />
             </View>
 
             <View style={Styles.ButtonContainer}>
-                <Button 
+                <CustomButton
                     title="Go to use Effect" 
-                    color='#CC0033'
+                    backgroundColor='#CC0033'
                     onPress={() => navigation.navigate('LoadUsr')} 
+                />
+            </View>
+
+            <View style={Styles.ButtonContainer}>
+                <CustomButton
+                    title="Go to Register" 
+                    backgroundColor='#b70000'
+                    onPress={() => navigation.navigate('Regis')} 
                 />
             </View>
 
@@ -92,17 +100,18 @@ const Styles = StyleSheet.create({
     ViewStyle: { 
         backgroundColor: '#FFFACD',
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         padding: 20,
     },
     TextStyle: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginBottom: 20,
+        marginBottom: 10,
+        marginTop: 5,
     },
     ButtonContainer: { 
-        marginVertical: 2, 
+        //marginVertical: 5, 
         width: '50%',  
     },
 });

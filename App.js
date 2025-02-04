@@ -11,6 +11,7 @@ import CardScreen from './src/screens/CardScreen';
 import CatScreen from './src/screens//CatScreen';
 import AddCatScreen from './src/screens/AddCatScreen';
 import LoadUsers from './src/screens/LoadUsers';
+import RegisForm from './src/screens/RegisForm';
 
 const Stack = createStackNavigator();
 
@@ -28,6 +29,7 @@ const App = () => {
         <Stack.Screen name="CatScreen" component={CatScreen} />
         <Stack.Screen name="AddCatScreen" component={AddCatScreen} />
         <Stack.Screen name="LoadUsr" component={LoadUsers} />
+        <Stack.Screen name="Regis" component={RegisForm} />
       </Stack.Navigator>
     </NavigationContainer>
 

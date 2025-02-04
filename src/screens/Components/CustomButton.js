@@ -14,7 +14,7 @@ const CustomButton = ({ title, onPress, backgroundColor }) => {
 
 const Styles = StyleSheet.create({
     Button: {
-        padding: 10,
+        padding: 8,
         alignItems: 'center',
         borderRadius: 5,
         marginVertical: 5,
