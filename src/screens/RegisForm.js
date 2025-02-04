@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Alert } from "react-native";
 import CustomButton from "./Components/CustomButton";
 
-const RegisForm = () => {
+const RegisForm = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -59,11 +59,14 @@ const RegisForm = () => {
 
         if (!usernameError && !emailError && !passwordError && !confirmPasswordError) {
             Alert.alert("Registration Result:", "SUCCESS !!");
+            //Reset ค่าในฟอร์ม
             setUsername('');
             setEmail('');
             setPassword('');
             setConfirmPassword('');
             setErrors({ username: '', email: '', password: '', confirmPassword: '' });
+
+            navigation.navigate("Card");
         }
     };
 
